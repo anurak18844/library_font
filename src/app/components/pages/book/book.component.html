@@ -1,0 +1,51 @@
+<div class="container mt-5">
+    <div class="h1 text-center">MANAGEMENT BOOK</div>
+    <div class="h3 text-center">ADD BOOK</div>
+    <form action="">
+        <div class="row">
+            <div class="col-md-1">รหัสหนังสือ : </div>
+            <div class="col-md-11"><input type="text" class="form-control"></div>
+
+            <div class="col-md-1 mt-3">ชื่อหนังสือ : </div>
+            <div class="col-md-11 mt-3"><input type="text" class="form-control"></div>
+
+            <div class="col-md-1 mt-3">ผู้แต่ง : </div>
+            <div class="col-md-11 mt-3"><input type="text" class="form-control"></div>
+
+            <div class="col-md-1 mt-3">สำนักพิมพ์ : </div>
+            <div class="col-md-11 mt-3"><input type="text" class="form-control"></div>
+
+            <div class="col-md-1 mt-3">ราคา : </div>
+            <div class="col-md-11 mt-3"><input type="text" class="form-control"></div>
+
+            <div class="btn btn-success mt-3">ADD</div>
+        </div>
+    </form>
+    <div class="h3 text-center mt-5">ตารางแสดงข้อมูล</div>
+    <table class="text-center table table-striped|sm|bordered|hover|inverse table-inverse table-responsive  mt-5">
+        <thead class="thead-inverse|thead-default">
+            <tr>
+                <th>รหัสหนังสือ</th>
+                <th>ชื่อหนังสือ</th>
+                <th>ผู้แต่ง</th>
+                <th>สำนักพิมพ์</th>
+                <th>ราคา</th>
+                <th>แก้ไข</th>
+                <th>ลบ</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr  *ngFor="let book of books">
+                    <td scope="row">{{book.book_id}}</td>
+                    <td>{{book.name}}</td>
+                    <td>{{book.author}}</td>
+                    <td>{{book.publisher}}</td>
+                    <td>{{book.price}}</td>
+                    <td><div class="btn btn-info">แก้ไข</div></td>
+                    <td><div class="btn btn-danger" (click)="deleteBook(book._id)">ลบ</div></td>
+                </tr>
+            </tbody>
+    </table>
+    
+
+</div>
