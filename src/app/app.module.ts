@@ -12,6 +12,9 @@ import { NavigationComponent } from './components/shared/navigation/navigation.c
 import { MainComponent } from './components/pages/main/main.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BorrowComponent } from './components/pages/borrow/borrow.component';
+import { LoginComponent } from './components/pages/login/login.component';
+import { AuthInterceptor } from './helper/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     MemberComponent,
     MenubarComponent,
     NavigationComponent,
-    MainComponent
+    MainComponent,
+    BorrowComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +36,13 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

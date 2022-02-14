@@ -1,1 +1,56 @@
-<p>staff works!</p>
+<div class="container mt-5">
+    <div class="h1 text-center mb-3">MANAGEMENT STAFF</div>
+    <div class="row">
+        <div class="col-md-2">ค้นหาข้อมูลตาม ID : </div>
+        <div class="col-md-8"><input type="text" class="form-control"></div>
+        <div class="col-md-2"><div class="btn btn-info text-light">ค้นหา</div></div>
+    </div>
+
+    <hr>
+    <form [formGroup] = "staffForm">
+        <div class="row">
+            <div class="col-md-1 mt-3">หรัสเจ้าหน้าที่ : </div>
+            <div class="col-md-11 mt-3"><input type="text" class="form-control" formControlName="staff_id"></div>
+
+            <div class="col-md-1 mt-3">รหัสผ่าน : </div>
+            <div class="col-md-11 mt-3"><input type="password" class="form-control" formControlName="password"></div>
+
+            <div class="col-md-1 mt-3">ชื่อเจ้าหน้าที่: </div>
+            <div class="col-md-11 mt-3"><input type="text" class="form-control" formControlName="name"></div>
+
+            <div class="col-md-1 mt-3">เบอร์โทรติดต่อ : </div>
+            <div class="col-md-11 mt-3"><input type="text" class="form-control" formControlName="tel"></div>
+
+    
+            <div class="col-md-1 mt-3">ที่อยู่ : </div>
+            <div class="col-md-11 mt-3"><input type="text" class="form-control" formControlName="address"></div>
+
+            <div class="btn btn-success mt-3" (click)="btnEvent()">{{btnText}}</div>
+        </div>
+    </form>
+    <div class="h3 text-center mt-5">ตารางแสดงข้อมูล</div>
+    <table class="text-center table table-striped|sm|bordered|hover|inverse table-inverse table-responsive  mt-5">
+        <thead class="thead-inverse|thead-default">
+            <tr>
+                <th>รหัสเจ้าหน้าที่</th>
+                <th>ชื่อเจ้าหน้าที่</th>
+                <th>ที่อยู่</th>
+                <th>เบอร์โทรติดต่อ</th>
+                <th>แก้ไข</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr  *ngFor="let staff of allStaff">
+                    <td scope="row">{{staff.staff_id}}</td>
+                    <td>{{staff.name}}</td>
+                    <td>{{staff.address}}</td>
+                    <td>{{staff.tel}}</td>
+                    <td><div class="btn btn-info" (click)="editStaff(staff._id)">แก้ไข</div></td>
+                </tr>
+            </tbody>
+    </table>
+    
+
+</div>
+
+

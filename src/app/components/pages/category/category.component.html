@@ -1,1 +1,48 @@
-<p>category works!</p>
+<div class="container mt-5">
+    <div class="h1 text-center mb-3">MANAGEMENT CATEGORY</div>
+    <div class="row">
+        <div class="col-md-2">ค้นหาข้อมูลตาม ID : </div>
+        <div class="col-md-8"><input type="text" class="form-control"></div>
+        <div class="col-md-2"><div class="btn btn-info text-light">ค้นหา</div></div>
+    </div>
+
+    <hr>
+    <form [formGroup] = "categoryForm">
+        <div class="row">
+            <div class="col-md-1 mt-3">รหัสประเภทสมาชิก : </div>
+            <div class="col-md-11 mt-3"><input type="text" class="form-control" formControlName="category_id"></div>
+
+            <div class="col-md-1 mt-3">ชื่อประเภทสมาชิก : </div>
+            <div class="col-md-11 mt-3"><input type="text" class="form-control" formControlName="name"></div>
+
+            <div class="col-md-1 mt-3">วันที่สามารถยืมได้ : </div>
+            <div class="col-md-11 mt-3"><input type="text" class="form-control" formControlName="day_can_borrow"></div>
+
+            <div class="btn btn-success mt-3" (click)="btnEvent()">{{btnText}}</div>
+        </div>
+    </form>
+    <div class="h3 text-center mt-5">ตารางแสดงข้อมูล</div>
+    <table class="text-center table table-striped|sm|bordered|hover|inverse table-inverse table-responsive  mt-5">
+        <thead class="thead-inverse|thead-default">
+            <tr>
+                <th>รหัสประเภทสมาชิก</th>
+                <th>ชื่อประเภทสมาชิก</th>
+                <th>วันที่สามารถยืมได้</th>
+                <th>แก้ไข</th>
+                <th>ลบ</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr  *ngFor="let category of categories">
+                    <td scope="row">{{category.category_id}}</td>
+                    <td>{{category.name}}</td>
+                    <td>{{category.day_can_borrow}}</td>
+                    <td><div class="btn btn-info" (click)="editMember(category._id)">แก้ไข</div></td>
+                    <td><div class="btn btn-danger" (click)="deleteCategory(category._id)">ลบ</div></td>
+                </tr>
+            </tbody>
+    </table>
+    
+
+</div>
+

@@ -1,1 +1,69 @@
-<p>member works!</p>
+<div class="container mt-5">
+    <div class="h1 text-center mb-3">MANAGEMENT MEMBER</div>
+    <div class="row">
+        <div class="col-md-2">ค้นหาข้อมูลตาม ID : </div>
+        <div class="col-md-8"><input type="text" class="form-control"></div>
+        <div class="col-md-2"><div class="btn btn-info text-light">ค้นหา</div></div>
+    </div>
+
+    <hr>
+    <form [formGroup] = "memberForm">
+        <div class="row">
+            <div class="col-md-1 mt-3">รหัสสมาชิก : </div>
+            <div class="col-md-11 mt-3"><input type="text" class="form-control" formControlName="student_id"></div>
+
+            <div class="col-md-1 mt-3">รหัสผ่าน : </div>
+            <div class="col-md-11 mt-3"><input type="password" class="form-control" formControlName="password"></div>
+
+            <div class="col-md-1 mt-3">ชื่อสมาชิก : </div>
+            <div class="col-md-11 mt-3"><input type="text" class="form-control" formControlName="name"></div>
+
+            <div class="col-md-1 mt-3">เบอร์โทรติดต่อ : </div>
+            <div class="col-md-11 mt-3"><input type="text" class="form-control" formControlName="tel"></div>
+
+            <div class="col-md-1 mt-3">กลุ่มการเรียน : </div>
+            <div class="col-md-11 mt-3"><input type="text" class="form-control" formControlName="group_learning"></div>
+
+            <div class="col-md-1 mt-3">ที่อยู่ : </div>
+            <div class="col-md-11 mt-3"><input type="text" class="form-control" formControlName="address"></div>
+
+            <div class="col-md-12 mt-3">ประเภทสมาชิก : </div>
+            <select name="" id="" class="mt-3 form-control" formControlName="category">
+                <option *ngFor="let category of categories" [value]='category._id'>{{category.name}}</option>
+              </select>
+            <div class="btn btn-success mt-3" (click)="btnEvent()">{{btnText}}</div>
+        </div>
+    </form>
+    <div class="h3 text-center mt-5">ตารางแสดงข้อมูล</div>
+    <table class="text-center table table-striped|sm|bordered|hover|inverse table-inverse table-responsive  mt-5">
+        <thead class="thead-inverse|thead-default">
+            <tr>
+                <th>รหัสสมาชิก</th>
+                <th>ชื่อสมาชิก</th>
+                <th>กลุ่มการเรียน</th>
+                <th>ที่อยู่</th>
+                <th>ประเภทสมาชิก</th>
+                <th>เบอร์โทรติดต่อ</th>
+                <th>จำนวนวันที่ยืมได้</th>
+                <th>แก้ไข</th>
+                <th>ลบ</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr  *ngFor="let member of members">
+                    <td scope="row">{{member.student_id}}</td>
+                    <td>{{member.name}}</td>
+                    <td>{{member.group_learning}}</td>
+                    <td>{{member.address}}</td>
+                    <td>{{member.category.name}}</td>
+                    <td>{{member.tel}}</td>
+                    <td>{{member.category.day_can_borrow}}</td>
+                    <td><div class="btn btn-info" (click)="editMember(member._id)">แก้ไข</div></td>
+                    <td><div class="btn btn-danger" (click)="deleteMember(member._id)">ลบ</div></td>
+                </tr>
+            </tbody>
+    </table>
+    
+
+</div>
+
